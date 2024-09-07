@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../components/header.ejs') %>
+<body>
+    <h1><%=title%></h1>
+    <%- include('../components/navbar.ejs') %>
+    <div>
+        <div>
+            <h3>Collected</h3>
+            <p><%=USDollar.format(totalPaid)%></p>
+        </div>
+        <div>
+            <h3>Pending</h3>
+            <p>
+                <%=USDollar.format(totalPending)%></p>
+        </div>
+        <div>
+            <h3>Total Invoices</h3>
+            <p><%=invoiceCount%></p>
+        </div>
+        <div>
+            <h3>Total Customers</h3>
+            <p><%=customerCount%></p>
+        </div>
+        <div>
+            <h2>Recent Revenue</h2>
+            <div>
+                <canvas id="revenueChart" width="600" height="400"></canvas>
+            </div>
+            <h3>Last 6 months</h3>
+        </div>
+    </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+    <script>
+        const revenueData = JSON.parse('<%-revenueData%>');
+        const canvas = document.getElementById('revenueChart');
+        new Chart(canvas, {
+            type: 'bar',
+            data: {
+                labels: revenueData.map(item => item.month),
+                datasets: [{
+                    label: 'Revenue',
+                    data: revenueData.map(item => item.revenue),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <%- include('../components/script.ejs') %>
+
+</body>
+</html>
+

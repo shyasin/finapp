@@ -1,0 +1,42 @@
+<h1><%=title%></h1>
+<form action="<%= formAction %>" method="post">
+    <%- include('../components/formErrors.ejs') %>
+    <div>
+        <span>Choose customer</span>
+        <select name="customer" id="customer">
+            <option>Select Customer</option>
+            <% customers.forEach(customer => { %>
+             <option value="<%= customer._id %>" 
+                <%=String(invoice?.customer?._id) === String(customer._id)?'selected': '' %>>
+                <%=customer.name%>
+             </option>
+            <% }) %>
+
+        </select>
+    </div>
+    <div>
+        <span>Amount</span>
+        <input id="amount" name="amount" type="Number" placeholder="Enter in USD"
+        value="<%= invoice?.amount || ''%>" />
+    </div>
+    <div>
+        <span>Due Date</span>
+        <input id="date" name="date" type="text" placeholder="Enter due date" value="<%=
+invoice?.date? new Date(invoice.date).toLocaleDateString('en-US') : '' %>" />
+    </div>
+    <div>
+        <span>Status</span>
+        <input id="pending" name="status" type="radio" value="pending" <%=invoice?.status === 'pending' ? 'checked':'' %>/>
+        <label for="pending">Pending</label>
+        <input id="paid" name="status" type="radio" value="paid" <%=invoice?.status === 'paid' ? 'checked':'' %>/>
+        <label for="paid">Paid</label>
+    </div>
+    
+        
+    
+    <div>
+        <a href="/dashboard/invoices">Cancel</a>
+        <button type="submit"><%= title %></button>
+    </div>
+
+</form>

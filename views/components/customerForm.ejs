@@ -1,0 +1,19 @@
+<form action="<%=formAction%>" method="post">
+    <div class="container1">
+        <label for="name">Customer Name:</label>
+        <input type='text' name="name" value="<%=customer?.name || ''%>">
+    </div>
+    <div class="container1">
+        <label for="email">Email:</label>
+        <input type='email' name="email" value="<%=customer?.email || ''%>">
+    </div>
+    <div class="container1">
+        <label for="phone">Phone:</label>
+        <input type='text' name="phone" value="<%=customer?.phone || ''%>">
+    </div>
+    <div class="container1">
+        <label for="address">Address:</label>
+        <input type='text' name="address" value="<%=customer?.address || ''%>">
+    </div>
+    <button type="submit"><%=title%></button>
+</form>

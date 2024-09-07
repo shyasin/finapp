@@ -1,0 +1,11 @@
+<form action="/<%= customer.id %>/edit" method="post">
+    <div class="container1">
+        <label for="name">name:</label>
+        <input type='text' name="name" value="<%= customer.name %>">
+    </div>
+    <div class="container1">
+        <label for="email">Email:</label>
+        <input type='email' name="email" value="<%= customer.email %>">
+    </div>
+    <button type="submit">Update</button>
+</form>

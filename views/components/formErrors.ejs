@@ -1,0 +1,14 @@
+<div>
+    <h1>Form Errors:</h1>
+</div>
+<div>
+   
+    <% if (typeof errors !=='undefined' ) { %>
+       
+        <% errors.forEach( (error) => { %>
+            <h1>
+                <%= error.msg %>
+            </h1>
+            <% }) %>
+                <% } %>
+</div>

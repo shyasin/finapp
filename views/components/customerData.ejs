@@ -1,0 +1,58 @@
+<form>
+<div>
+        <input type="text" id="search" name="search" placeholder="search customers ...">
+</div>
+<a href="customers/create">New Customer</a>
+ </form>
+</div>
+<div>
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>address</th>
+            <th>id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% customers.forEach ((customer)=> { %>
+            <tr>
+                <td>
+                    <%= customer.name %>
+                </td>
+                <td>
+                    <%= customer.email %>
+                </td>
+                <td>
+                    <%= customer.phone %>
+                </td>
+                <td>
+                    <%= customer.address %>
+                </td>
+                <td><button onclick="deleteModal('<%= customer._id %>')">Delete</button></td>
+                <td><a href="customers/<%= customer._id%>/edit">Edit</a></td>
+            </tr>
+            <% }) %>
+
+    </tbody>
+</table>
+</div>
+
+
+<dialog id="delete-modal">
+        <h3>Are you sure?</h3>
+        <p>All invoices related to the customer will be deleted</p>
+        <form  id="delete-form" method="post"><button>Yes</button></form>
+        <form method="dialog"><button>Cancel</button></form>
+</dialog>
+
+<script>
+    function deleteModal(customerId) {
+        const modal = document.querySelector('#delete-modal');
+        const deleteForm = document.querySelector('#delete-form');
+        deleteForm.setAttribute('action', `customers/${customerId}/delete`);
+        modal.showModal();
+    }
+</script>

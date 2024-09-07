@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../components/header.ejs') %>
+    <body>
+        <%- include('../components/navbar.ejs') %>
+        <% if (type ==='data') { %>
+            <%- include('../components/invoiceData.ejs') %>
+         <% } else { %>
+          <%- include('../components/invoiceForm.ejs') %>
+        <% } %>
+
+        <%- include('../components/script.ejs') %>
+    </body>
+</html>

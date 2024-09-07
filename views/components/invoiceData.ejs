@@ -1,0 +1,59 @@
+<h1><%=title%></h1>
+<form>
+    <input type="text" name="search" id="search" placeholder="search invoices ..."/>
+    <a href="invoices/create">New Invoice</a>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Amount</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+       
+    </thead>
+    <tbody>
+        <% invoices.forEach(invoice => { %>
+         
+            <tr>
+                <td><%=invoice.customer.name  %></td>
+                <td><%= USDollar.format(invoice.amount) %></td>
+                <td><%=new Date(invoice.date).toLocaleDateString('en-US') %></td>
+                <td>
+                    <% if (invoice.status==='paid') { %>
+                     <span>Paid</span>
+                     <% } else { %>
+                      <span>Pending</span>
+                    <% } %>
+                 </td>
+                 <td>
+                    <a href="invoices/<%=invoice._id%>/edit">Edit</a>
+                    <button onclick="deleteModal('<%=invoice._id%>')">Delete</button>
+                 </td>
+            </tr>
+        <% }); %>
+
+        <dialog id="delete-modal">
+            <h3>Are you sure</h3>
+            <p>The invoice will be deleted</p>
+            <form id="delete-form" method="post">
+                <button>Yes</button>
+            </form>
+            <form method="dialog">
+                <button>Cancel</button>
+            </form>
+        </dialog>
+        <script>
+            function deleteModal(invoiceId){
+                const modal = document.querySelector('#delete-modal');
+                const deleteForm = document.querySelector('#delete-form');
+                deleteForm.setAttribute('action', `invoices/${invoiceId}/delete`);
+                modal.showModal();
+            }
+        </script>
+        
+        
+    </tbody>
+</table>

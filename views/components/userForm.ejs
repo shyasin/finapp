@@ -1,0 +1,21 @@
+<form action="/signup" method="post">
+    <div class="container1">
+        <label for="userName">Enter your Name:</label>
+        <input type='text' name="userName" placeholder="Your Name" value=<%=user?.userName || ''%> >
+    </div>
+    <div class="container1">
+        <label for="email">Email:</label>
+        <input type='email' name="email" placeholder="Email" value=<%=user?.email || ''%>>
+    </div>
+
+    <div class="container1">
+        <label for="password">Password:</label>
+        <input type='password' name="password" placeholder="password" value=<%= user?.password ||''%> >
+    </div>
+
+    <div class="container1">
+        <label for="repeatedPassword">Confirm Password:</label>
+        <input type='password' name="repeatedPassword" placeholder="repeatedPassword"  value=<%= user?.repeatedPassword ||'' %>>
+    </div>
+    <button type="submit">Submit</button>
+</form>
